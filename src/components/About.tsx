@@ -30,13 +30,13 @@ const About: FC = () => {
             About Me
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
-            I'm Muhsin, a frontend developer with a passion for crafting clean, user-friendly interfaces. I specialize in building interactive web applications using modern technologies like React, Vue, and JavaScript.
+            I'm Muhsin, a full-stack web developer with a strong focus on building scalable, maintainable, and responsive applications. I specialize in frontend development using React.js, Vue.js, Material-UI and Bootstrap, and have solid experience with backend technologies including Node.js, Express.js, and NestJS.
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
-            I hold a Bachelor's degree in Computer Science (Software Engineering) and have 1 year of experience at the National Registration Department in Putrajaya.
+            With a Bachelor's degree in Computer Science (Software Engineering) and 1 year of hands-on experience at the National Registration Department in Putrajaya, I’ve worked on real-world systems that demand reliability and performance.
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            Outside of coding, I enjoy learning new technologies, solving UI challenges, and continuously improving my skills.
+            I’m passionate about clean architecture, performance optimization, and delivering seamless user experiences. Outside of development, I enjoy exploring new frameworks, tackling UI/UX challenges, and sharpening my skills through continuous learning.
           </Typography>
 
           <Divider sx={{ bgcolor: 'gray', mb: 2 }} />
@@ -44,21 +44,25 @@ const About: FC = () => {
           <Typography variant="h6" gutterBottom>
             Skills
           </Typography>
-          <Stack direction="row" spacing={1} flexWrap="wrap">
-            <Chip label="React" color="primary" />
+          <Stack direction="row" gap={1} flexWrap="wrap">
+            <Chip label="React.js" color="primary" />
             <Chip label="Vue.js" color="primary" />
-            <Chip label="JavaScript" color="primary" />
-            <Chip label="HTML" color="primary" />
-            <Chip label="CSS" color="primary" />
+            <Chip label="Material-UI" color="primary" />
+            <Chip label="Bootstrap" color="primary" />
+            <Chip label="Node.js" color="primary" />
             <Chip label="Express.js" color="primary" />
             <Chip label="Nest.js" color="primary" />
-            <Chip label="Git" color="primary" />
+            <Chip label="Java" color="primary" />
+            <Chip label="HTML" color="primary" />
+            <Chip label="SCSS/CSS" color="primary" />
+            <Chip label="JavaScript" color="primary" />
+            <Chip label="TypeScript" color="primary" />
           </Stack>
         </motion.div>
       </Box>
 
       {/* Right Avatar */}
-      <Box flex={0.5} textAlign="center" sx={{ display: { xs: "none", md: "block"} }}>
+      <Box flex={0.5} textAlign="center" sx={{ display: { md: "none", lg: "block" } }}>
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}

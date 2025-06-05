@@ -38,6 +38,7 @@ const Home = () => {
               width: { xs: 250, md: 300 },
               height: { xs: 250, md: 300 },
               mx: 'auto',
+              my: { xs: 5, md: 0 },
               border: '4px solid #90caf9',
             }}
           />
@@ -58,11 +59,12 @@ const Home = () => {
             Hi, I'm <span style={{ color: '#90caf9' }}>Muhsin</span>
           </Typography>
           <Typography variant='h5' component='h2' gutterBottom>
-            Frontend Developer
+            Frontend, Backend or FullStack Developer
           </Typography>
           <Typography variant='body1' sx={{ mb: 3 }}>
-            I craft interactive and responsive websites using React, Vue, and modern tools.
-            Passionate about clean code, UI/UX, and performance optimization.
+            Proficient in building full-stack web applications using React.js and Vue.js on the frontend, and Node.js (Express.js, NestJS) on the backend. 
+            Experienced in crafting modular, maintainable code with JavaScript, TypeScript, Java, HTML, SCSS/CSS, Material-UI and Bootstrap. 
+            Focused on scalable architecture, performance optimization, and delivering robust, production-ready solutions.
           </Typography>
 
           {/* Button */}
