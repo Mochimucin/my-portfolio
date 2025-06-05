@@ -15,7 +15,7 @@ const projects: Project[] = [
     title: "Portfolio Website",
     description: "A responsive personal portfolio built with React, TypeScript, and MUI.",
     image: Portfolio,
-    github: "https://github.com/yourname/portfolio",
+    github: "https://github.com/Mochimucin/my-portfolio",
   },
   {
     title: "NASA Project",
@@ -47,7 +47,7 @@ const Projects = () => {
       </Typography>
 
       <Typography variant="h6" align="center" color="white" sx={{ mt: 2, fontSize: "20px" }}>
-        Explore a selection of my personal and collaborative projects, showcasing responsive design, modern web development tools, and real-world problem solving using React, TypeScript, and MUI.
+        Explore projects built with React, Vue, Node.js, Express.js, NestJS, Java, Material-UI, JavaScript, TypeScript, SCSS, and HTML. Showcasing clean UI, full-stack functionality, and performance-driven development.
       </Typography>
 
       <Box
