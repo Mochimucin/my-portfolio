@@ -1,0 +1,11 @@
+export { default as HomeIcon } from '@mui/icons-material/Home';
+export { default as InfoIcon  } from '@mui/icons-material/Info';
+export { default as WorkIcon } from '@mui/icons-material/Work';
+export { default as MenuIcon } from '@mui/icons-material/Menu';
+export { default as ContactMailIcon } from '@mui/icons-material/ContactMail';
+export { default as CloseIcon } from '@mui/icons-material/Close';
+export { default as SchoolIcon  } from '@mui/icons-material/School';
+export { default as GitHub  } from '@mui/icons-material/GitHub';
+export { default as LinkedIn  } from '@mui/icons-material/LinkedIn';
+export { default as Email  } from '@mui/icons-material/Email';
+export { default as Launch  } from '@mui/icons-material/Launch';
