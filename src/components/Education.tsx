@@ -31,7 +31,7 @@ const Education: React.FC = () => {
       result: '5A 4B',
     },
     {
-      title: 'Kolej Matrikulasi Perlis',
+      title: 'Kolej Matrikulasi Kedah',
       subtitle: 'Science Stream (Computer Science)',
       date: '2017 – 2018',
     },

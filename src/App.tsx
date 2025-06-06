@@ -5,6 +5,7 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
+import { Analytics } from '@vercel/analytics/react';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Projects />
       <Education />
       <Contact />
+      <Analytics />
     </div>
   )
 }
