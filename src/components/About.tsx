@@ -33,6 +33,9 @@ const About: FC = () => {
             I'm Muhsin, a full-stack web developer with a strong focus on building scalable, maintainable, and responsive applications. I specialize in frontend development using React.js, Vue.js, Material-UI and Bootstrap, and have solid experience with backend technologies including Node.js, Express.js, and NestJS.
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
+            I also have growing expertise in Docker, currently advancing my skills in containerization and DevOps workflows to build and deploy applications more efficiently.
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
             With a Bachelor's degree in Computer Science (Software Engineering) and 1 year of hands-on experience at the National Registration Department in Putrajaya, I’ve worked on real-world systems that demand reliability and performance.
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
@@ -57,12 +60,13 @@ const About: FC = () => {
             <Chip label="SCSS/CSS" color="primary" />
             <Chip label="JavaScript" color="primary" />
             <Chip label="TypeScript" color="primary" />
+            <Chip label="Docker" color="primary" />
           </Stack>
         </motion.div>
       </Box>
 
       {/* Right Avatar */}
-      <Box flex={0.5} textAlign="center" sx={{ display: { md: "none", lg: "block" } }}>
+      <Box flex={0.5} textAlign="center" sx={{ display: { xs: "none", lg: "block" } }}>
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -72,8 +76,8 @@ const About: FC = () => {
             alt="Muhsin Avatar"
             src={Muhsin}
             sx={{
-              width: { xs: 180, md: 250 },
-              height: { xs: 180, md: 250 },
+              width: { lg: 250 },
+              height: { lg: 250 },
               mx: 'auto',
               border: '4px solid #90caf9',
             }}
