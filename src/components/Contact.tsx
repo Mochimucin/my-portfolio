@@ -1,143 +1,66 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Divider,
-  Stack,
-  Typography,
-  Paper,
-  useTheme,
-  useMediaQuery
-} from '@mui/material';
-import { Email, Phone, LocationOn } from '@mui/icons-material';
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
   return (
-    <Box id="Contact" sx={{ backgroundColor: '#0e0e1a', px: { xs: 2, md: 4 }, py: 5 }}>
-      <Typography
-        variant='h4'
-        sx={{
-          fontWeight: 'bold',
-          borderLeft: `6px solid ${theme.palette.warning.main}`,
-          pl: 2,
-          ml: 0,
-        }}
-      >
+    <section id="Contact" className="bg-bg-darkest px-4 py-10 md:px-8 scroll-mt-20">
+      <h2 className="border-l-[6px] border-accent-warning pl-4 text-3xl font-bold">
         Contact Information
-      </Typography>
-      <Card 
-        elevation={3}
-        sx={{
-          backgroundColor: '#0e0e1a',
-          color: 'white',
-          borderRadius: 3,
-          pt: 3,
-          width: '100%',
-        }}  
-      >
-        <CardContent>
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={4}>
+      </h2>
+
+      <div className="mt-6 w-full rounded-xl bg-bg-darkest shadow-lg">
+        <div className="p-6">
+          <div className="flex flex-col gap-8 md:flex-row">
             {/* Contact Section */}
-            <Box sx={{ flex: 1 }}>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                gutterBottom
-                sx={{ color: '#00bcd4' }}
-              >
+            <div className="flex-1">
+              <h3 className="mb-2 text-xl font-bold text-accent-cyan">
                 Contact
-              </Typography>
+              </h3>
 
-              <Stack spacing={2} mt={5}>
-                <Stack direction="row" alignItems="center" spacing={2}>
-                  <Email sx={{ color: '#00bcd4' }} />
-                  <Typography variant="body1">
-                    muhammadmuhsin67@gmail.com
-                  </Typography>
-                </Stack>
+              <div className="mt-10 flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  <Mail className="text-accent-cyan" size={20} strokeWidth={2.5} />
+                  <p>muhammadmuhsin67@gmail.com</p>
+                </div>
 
-                <Stack direction="row" alignItems="center" spacing={2}>
-                  <Phone sx={{ color: '#00bcd4' }} />
-                  <Typography variant="body1">019-2029523</Typography>
-                </Stack>
+                <div className="flex items-center gap-4">
+                  <Phone className="text-accent-cyan" size={20} strokeWidth={2.5} />
+                  <p>019-2029523</p>
+                </div>
 
-                <Stack direction="row" alignItems="center" spacing={2}>
-                  <LocationOn sx={{ color: '#00bcd4' }} />
-                  <Typography variant="body1">
-                    No.7 Kampung Linchai, Mukim Kedawang, 07000 Langkawi, Kedah
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Box>
+                <div className="flex items-center gap-4">
+                  <MapPin className="text-accent-cyan" size={20} strokeWidth={2.5} />
+                  <p>No.7 Kampung Linchai, Mukim Kedawang, 07000 Langkawi, Kedah</p>
+                </div>
+              </div>
+            </div>
 
-            <Divider
-              orientation= {isMobile ? 'horizontal' : 'vertical'}
-              flexItem
-              sx={{
-                borderColor: '#333',
-                display: "block",
-              }}
-            />
+            <div className="border-t border-[#333] md:border-t-0 md:border-1" />
 
             {/* References Section */}
-            <Box sx={{ flex: 1 }}>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                gutterBottom
-                sx={{ color: '#00bcd4' }}
-              >
+            <div className="flex-1">
+              <h3 className="mb-2 text-xl font-bold text-accent-cyan">
                 References
-              </Typography>
+              </h3>
 
-              <Stack spacing={2}>
-                <Paper
-                  variant="outlined"
-                  sx={{
-                    backgroundColor: '#1a1a2e',
-                    color: 'white',
-                    p: 2,
-                    borderRadius: 2,
-                    borderColor: '#333',
-                  }}
-                >
-                  <Typography fontWeight="bold">
-                    Y. Bhg. Prof. Ts. Dato’ Dr. Aziz bin Deraman
-                  </Typography>
-                  <Typography variant="body2">
-                    • Science Computer Lecturer
-                  </Typography>
-                  <Typography variant="body2">• 09-6683155 / 3676</Typography>
-                </Paper>
+              <div className="flex flex-col gap-4">
+                <div className="rounded-lg border border-[#333] bg-bg-secondary p-4">
+                  <p className="font-bold">Y. Bhg. Prof. Ts. Dato' Dr. Aziz bin Deraman</p>
+                  <p className="text-sm">• Science Computer Lecturer</p>
+                  <p className="text-sm">• 09-6683155 / 3676</p>
+                </div>
 
-                <Paper
-                  variant="outlined"
-                  sx={{
-                    backgroundColor: '#1a1a2e',
-                    color: 'white',
-                    p: 2,
-                    borderRadius: 2,
-                    borderColor: '#333',
-                  }}
-                >
-                  <Typography fontWeight="bold">
-                    Noor Meryza Binti Mazlan
-                  </Typography>
-                  <Typography variant="body2">
-                    • Senior Business Analyst, Infomina Berhad
-                  </Typography>
-                  <Typography variant="body2">• 019-6670749</Typography>
-                </Paper>
-              </Stack>
-            </Box>
-          </Stack>
-        </CardContent>
-      </Card>
-    </Box>
+                <div className="rounded-lg border border-[#333] bg-bg-secondary p-4">
+                  <p className="font-bold">Noor Meryza Binti Mazlan</p>
+                  <p className="text-sm">• Senior Business Analyst, Infomina Berhad</p>
+                  <p className="text-sm">• 019-6670749</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
-}
+};
 
 export default Contact;

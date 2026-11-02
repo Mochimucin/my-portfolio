@@ -1,149 +1,109 @@
-import React from 'react';
-import { 
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Stack,
-  useTheme,
-  useMediaQuery
- } from '@mui/material';
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const Education: React.FC = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+interface EducationItem {
+  title: string;
+  subtitle: string | string[];
+  date?: string;
+  result?: string;
+}
 
-  const educationList = [
-    {
-      title: 'SMK Kedawang',
-      subtitle: 'Pentaksiran Tingkatan 3 (PT3)',
-      date: '2012 – 2014',
-      result: '7A 1B 2C',
-    },
-    {
-      title: 'MRSM Kubang Pasu',
-      subtitle: 'Sijil Pelajaran Malaysia (SPM)',
-      date: '2015 – 2016',
-      result: '5A 4B',
-    },
-    {
-      title: 'Kolej Matrikulasi Kedah',
-      subtitle: 'Science Stream (Computer Science)',
-      date: '2017 – 2018',
-    },
-    {
-      title: 'University Malaysia Terengganu',
-      subtitle: 'Bachelor of Computer Science (Software Engineering) with Hons',
-      date: '2019 – 2022',
-    },
-    {
-      title: 'Perak Human Capital Development Centre (PHCDC)',
-      subtitle: [
-        'Expert Craftsmans Programmes – Pneumatic and Electro Pneumatics',
-        'Expert Craftsmans Programmes – Mechatronic System',
-        'Data Modelling and Statistical Analysis',
-      ],
-    },
-  ];
+const educationList: EducationItem[] = [
+  {
+    title: 'SMK Kedawang',
+    subtitle: 'Pentaksiran Tingkatan 3 (PT3)',
+    date: '2012 - 2014',
+    result: '7A 1B 2C',
+  },
+  {
+    title: 'MRSM Kubang Pasu',
+    subtitle: 'Sijil Pelajaran Malaysia (SPM)',
+    date: '2015 - 2016',
+    result: '5A 4B',
+  },
+  {
+    title: 'Kolej Matrikulasi Kedah',
+    subtitle: 'Science Stream (Biology Chemistry and Physic)',
+    date: '2017 - 2018',
+  },
+  {
+    title: 'Universiti Malaysia Terengganu',
+    subtitle: 'Bachelor of Computer Science (Software Engineering)',
+    date: '2019 - 2022',
+  },
+  {
+    title: 'Perak Human Capital Development Centre (PHCDC)',
+    subtitle: [
+      'Expert Craftsmans Programmes – Pneumatic and Electro Pneumatics',
+      'Expert Craftsmans Programmes – Mechatronic System',
+      'Data Modelling and Statistical Analysis',
+    ],
+  },
+]
 
-  const EducationCard = (edu: typeof educationList[0], key?: number) => (
-    <Card
-      key={key}
-      elevation={6}
-      sx={{
-        backgroundColor: '#2a2540',
-        color: '#ffffff',
-        borderLeft: `5px solid ${theme.palette.primary.main}`,
-        borderRadius: 3,
-        px: 3,
-        py: 2,
-        mx: isMobile ? 1 : 0,
-        transition: 'transform 0.3s ease',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-        },
-      }}
-    >
-      <CardContent>
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          {edu.title}
-        </Typography>
+const EducationCard = ({ edu }: { edu: EducationItem }) => (
+  <div className="mx-2 rounded-xl border-l-[5px] border-[#1976d2] bg-[#2a2540] px-6 py-4 text-white shadow-lg transition-transform duration-300 hover:-translate-y-1 sm:mx-0">
+    <h3 className="text-lg font-bold">{edu.title}</h3>
 
-        {Array.isArray(edu.subtitle) ? (
-          <Stack spacing={0.5} sx={{ mt: 1 }}>
-            {edu.subtitle.map((item, idx) => (
-              <Typography key={idx} variant="body2" sx={{ color: '#bcb6e2' }}>
-                • {item}
-              </Typography>
-            ))}
-          </Stack>
-        ) : (
-          <Typography variant="body2" sx={{ color: '#bcb6e2', mt: 0.5 }}>
-            • {edu.subtitle}
-          </Typography>
-        )}
+    {Array.isArray(edu.subtitle) ? (
+      <div className="mt-2 flex flex-col gap-1">
+        {edu.subtitle.map((item, idx) => (
+          <p key={idx} className="text-sm text-[#bcb6e2]">• {item}</p>
+        ))}
+      </div>
+    ) : (
+      <p className="mt-1 text-sm text-[#bcb6e2]">• {edu.subtitle}</p>
+    )}
 
-        {edu.date && (
-          <Typography variant="caption" sx={{ color: '#aaa', display: 'block', mt: 1 }}>
-            {edu.date}
-          </Typography>
-        )}
+    {edu.date && <p className="mt-2 block text-xs text-[#aaa]">{edu.date}</p>}
+    {edu.result && <p className="text-xs text-[#aaa]">{edu.result}</p>}
+  </div>
+);
 
-        {edu.result && (
-          <Typography variant="caption" sx={{ color: '#aaa' }}>
-            {edu.result}
-          </Typography>
-        )}
-      </CardContent>
-    </Card>
-  );
+const Education = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 639px)');
+    const handleChange = () => setIsMobile(mql.matches);
+    handleChange();
+    mql.addEventListener('change', handleChange);
+    return () => mql.removeEventListener('change', handleChange);
+  }, []);
 
   return (
-    <Box
-      id="Education"
-      sx={{
-        px: isMobile ? 0: 6,
-        py: 6,
-        bgcolor: '#1c1c2b',
-        color: '#fff',
-      }}
-    >
-      <Typography
-        variant={isMobile ? 'h5' : 'h4'}
-        sx={{
-          fontWeight: 'bold',
-          borderLeft: `6px solid ${theme.palette.warning.main}`,
-          pl: 2,
-          mb: 5,
-          ml: isMobile ? 2 : 0,
-        }}
-      >
+    <section id="Education" className="bg-bg-tertiary px-0 py-12 scroll-mt-20 text-white sm:px-12">
+      <h2 className="mb-10 ml-4 border-l-[6px] border-accent-warning pl-4 text-2xl font-bold sm:ml-0 sm:text-3xl">
         Education Background
-      </Typography>
+      </h2>
 
       {isMobile ? (
-        <Box sx={{ px: 1 }}>
+        <div className="px-1">
           <Swiper
             modules={[Pagination]}
             spaceBetween={16}
             slidesPerView={1}
             pagination={{ clickable: true }}
+            className="!pb-10"
           >
             {educationList.map((edu, index) => (
-              <SwiperSlide key={index}>{EducationCard(edu)}</SwiperSlide>
+              <SwiperSlide key={index}>
+                <EducationCard edu={edu} />
+              </SwiperSlide>
             ))}
           </Swiper>
-        </Box>
+        </div>
       ) : (
-        <Stack spacing={4}>
-          {educationList.map((edu, index) => EducationCard(edu, index))}
-        </Stack>
+        <div className="flex flex-col gap-8">
+          {educationList.map((edu, index) => (
+            <EducationCard key={index} edu={edu} />
+          ))}
+        </div>
       )}
-    </Box>
+    </section>
   )
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, Box, Button, ListItemButton } from "@mui/material";
-import { HomeIcon, InfoIcon, WorkIcon, ContactMailIcon, CloseIcon, MenuIcon, SchoolIcon } from '../assets/icons';
+import { Home, Info, Briefcase, GraduationCap, Mail, Menu, X } from "lucide-react";
 
 const Navbar: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -8,11 +7,11 @@ const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("Home");
 
   const navItems = [
-    { text: 'Home', icon: <HomeIcon sx={{ color: 'white' }} /> },
-    { text: 'About', icon: <InfoIcon sx={{ color: 'white' }} /> },
-    { text: 'Projects', icon: <WorkIcon sx={{ color: 'white' }} /> },
-    { text: 'Education', icon: <SchoolIcon sx={{ color: 'white' }} /> },
-    { text: 'Contact', icon: <ContactMailIcon sx={{ color: 'white' }} /> },
+    { text: 'Home', icon: <Home size={20} className="text-white" /> },
+    { text: 'About', icon: <Info size={20} className="text-white" /> },
+    { text: 'Projects', icon: <Briefcase size={20} className="text-white" /> },
+    { text: 'Education', icon: <GraduationCap size={20} className="text-white" /> },
+    { text: 'Contact', icon: <Mail size={20} className="text-white" /> },
   ];
 
   // useEffect for Navbar becomes thinner and smaller.
@@ -61,146 +60,108 @@ const Navbar: React.FC = () => {
     setDrawerOpen(open);
   }
 
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return(
     <>
-      <AppBar
-        position="sticky"
-        sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.2)', // slight white transparency
-          backdropFilter: 'blur(10px)', // the frosted glass effect
-          WebkitBackdropFilter: 'blur(10px)', // for Safari support
-          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // soft shadow
-          borderBottom: '1px solid rgba(255, 255, 255, 0.3)', // optional bottom border
-          transition: 'all 0.3s ease',
-          paddingY: isScrolled ? 0 : 1,
-        }}
+      <nav 
+        className={`sticky top-0 z-40 border-b border-white/30 bg-white/20
+          shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all duration-300
+          ${isScrolled ? 'py-0' : 'py-2'}`
+        }
       >
-        <Toolbar>
+        <div className="flex min-h-14 items-center px-4 sm:min-h-16">
           {/* Logo or Name */}
-          <Typography 
-            variant="h6" 
-            component="div" 
-            sx={{ 
-              flexGrow: 1, 
-              fontWeight: 'bold',
-              fontSize: isScrolled ? '1.0rem' : '1.3rem',
-              transition: 'font-size 0.3s ease'
-            }}
+          <span 
+            className={`flex-grow font-bold text-white transition-all duration-300 
+              ${isScrolled ? 'text-base' : 'text-xl'}`
+            }
           >
             Mochi Portfolio
-          </Typography>
+          </span>
 
           {/* Desktop Menu */}
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <div className="hidden md:flex">
             {navItems.map((item) => (
-              <Button 
-                key={item.text} 
-                color="inherit" 
-                onClick={() => {
-                  const section = document.getElementById(item.text);
-                  if (section) {
-                    section.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                sx={{ 
-                  marginLeft: 2,
-                  color: activeSection === item.text ? "#90caf9" : "white",
-                  fontWeight: activeSection === item.text ? "bold" : "normal",
-                  borderBottom: activeSection === item.text ? "2px solid #90caf9" : "none",
-                  position: "relative",
-                  overflow: "hidden",
-                  '&:after': {
-                    content: '""',
-                    position: "absolute",
-                    width: "0%",
-                    height: "2px",
-                    bottom: 0,
-                    left: 0,
-                    backgroundColor: "white",
-                    transition: "width 0.3s ease"
-                  },
-                  '&:hover:after': {
-                    width: "100%",
-                  }
-                }}
+              <button
+                key={item.text}
+                onClick={() => scrollToSection(item.text)}
+                className={`relative ml-4 cursor-pointer overflow-hidden px-2 pb-1 uppercase tracking-wide transition-colors duration-300 
+                  after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white
+                  after:transition-all after:duration-300 after:content-[''] hover:after:w-full 
+                  ${activeSection === item.text 
+                    ? 'border-b-2 border-accent-blue font-bold text-accent-blue'
+                    : 'font-normal text-white'
+                  }`
+                }
               >
                 {item.text}
-              </Button>
+              </button>
             ))}
-          </Box>
+          </div>
 
-          {/* Mobile Menu */}
-          <IconButton
-            color="inherit"
-            edge="end"
-            sx={{ display: { xs: 'block', md: 'none' } }}
+          {/* Mobile Menu Button */}
+          <button
             onClick={toggleDrawer(true)}
+            aria-label="Open menu"
+            className="block cursor-pointer p-2 text-white md:hidden"
           >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+            <Menu size={24} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Backdrop */}
+      <div
+        onClick={toggleDrawer(false)}
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300
+          ${drawerOpen ? 'opacity-100' : 'pointer-events-none opacity-0'}
+        `}
+      />
 
       {/* Drawer for Mobile */}
-      <Drawer 
-        anchor="right" 
-        open={drawerOpen} 
-        onClose={toggleDrawer(false)}
-        slotProps={{
-          paper: {
-            sx: {
-              width: 250,
-              background: '#1c1c2b',
-              color: 'white'
-            }
-          }
-        }}
+      <div 
+        className={`fixed right-0 top-0 z-50 h-full w-[250px] bg-bg-tertiary text-white
+          transition-transform duration-300 ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}
+        `}
       >
-        <Box
-          sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}
-        >
-          <IconButton onClick={toggleDrawer(false)} sx={{ color: 'white' }}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
+        <div className="flex justify-end p-2">
+          <button onClick={toggleDrawer(false)} className="cursor-pointer p-2 text-white" aria-label="Close menu">
+            <X size={24} />
+          </button>
+        </div>
 
-        <List>
+        <ul>
           {navItems.map(({ text, icon }) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton
+            <li key={text}>
+              <button
                 onClick={() => {
-                  const section = document.getElementById(text);
-                  if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  scrollToSection(text);
                   setDrawerOpen(false);
                 }}
-                sx={{
-                  backgroundColor: activeSection === text ? 'rgba(255,255,255,0.1)' : '#1c1c2b',
-                  px: 3,
-                  py: 1.5,
-                }}
+                className={`flex w-full cursor-pointer items-center gap-4 px-6 py-3 text-left
+                  ${activeSection === text ? 'bg-white/10' : 'bg-bg-tertiary'}
+                `}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  {icon}
-                  <ListItemText
-                    primary={text}
-                    sx={{ ml: 2 }}
-                    slotProps={{
-                      primary: {
-                        sx: {
-                          fontWeight: activeSection === text ? 'bold' : 'normal',
-                          color: activeSection === text ? '#90caf9' : 'white',
-                        }
-                      }
-                    }}
-                  />
-                </Box>
-              </ListItemButton>
-            </ListItem>
+                {icon}
+                <span 
+                  className={activeSection === text 
+                    ? 'font-bold text-accent-blue'
+                    : 'font-normal text-white'
+                  }
+                >
+                  {text}
+                </span>
+              </button>
+            </li>
           ))}
-        </List>
-      </Drawer>
+        </ul>
+      </div>
     </>
   )
 }
