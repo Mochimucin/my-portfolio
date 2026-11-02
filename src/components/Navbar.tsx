@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Home, Info, Briefcase, GraduationCap, Mail, Menu, X } from "lucide-react";
 
+const navItems = [
+  { text: 'Home', icon: <Home size={20} className="text-white" /> },
+  { text: 'About', icon: <Info size={20} className="text-white" /> },
+  { text: 'Projects', icon: <Briefcase size={20} className="text-white" /> },
+  { text: 'Education', icon: <GraduationCap size={20} className="text-white" /> },
+  { text: 'Contact', icon: <Mail size={20} className="text-white" /> },
+];
+
 const Navbar: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("Home");
-
-  const navItems = [
-    { text: 'Home', icon: <Home size={20} className="text-white" /> },
-    { text: 'About', icon: <Info size={20} className="text-white" /> },
-    { text: 'Projects', icon: <Briefcase size={20} className="text-white" /> },
-    { text: 'Education', icon: <GraduationCap size={20} className="text-white" /> },
-    { text: 'Contact', icon: <Mail size={20} className="text-white" /> },
-  ];
 
   // useEffect for Navbar becomes thinner and smaller.
   useEffect(() => {
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
     const handleScrollSpy = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-      for (let item of navItems) {
+      for (const item of navItems) {
         const id = item.text;
         const section = document.getElementById(id);
         if (section) {

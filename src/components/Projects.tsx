@@ -1,6 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { 
-  NASA, CrwnClthing, EventManagement, 
+  // NASA, CrwnClthing, EventManagement, 
   Portfolio, Ecommerce 
 } from '../assets/images';
 
